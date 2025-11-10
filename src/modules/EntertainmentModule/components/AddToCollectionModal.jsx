@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../../contexts/AuthContext';
+import { API_URL } from '../../../apiConfig';
 
 const AddToCollectionModal = ({ content, onClose, onSubmit }) => {
     const { user } = useAuth();
