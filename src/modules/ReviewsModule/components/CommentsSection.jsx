@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../../contexts/AuthContext';
 import { Edit, Trash2 } from 'lucide-react';
+import { API_URL } from '../../../apiConfig';
 
 const CommentsSection = ({ reviewId, onCommentPosted }) => {
     const { user } = useAuth();
