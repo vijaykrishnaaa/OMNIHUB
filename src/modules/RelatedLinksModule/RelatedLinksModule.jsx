@@ -3,7 +3,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { Link as LinkIcon, Edit, Trash2, AlertTriangle } from 'lucide-react';
 import EditRelatedLinkModal from './components/EditRelatedLinkModal';
 import NotificationSystem from '../../components/Notifications/NotificationSystem';
-import { API_URL } from '../../../apiConfig';
+import { API_URL } from '../../apiConfig'; // <-- THIS IS THE CORRECTED PATH
 
 const RelatedLinksModule = () => {
     const { user } = useAuth();
@@ -15,7 +15,7 @@ const RelatedLinksModule = () => {
     const fetchLinks = async () => {
         try {
             setLoading(true);
-            const response = await fetch('${API_URL}/api/related-links');
+            const response = await fetch(`${API_URL}/api/related-links`);
             const data = await response.json();
             setLinks(data);
         } catch (error) {
@@ -77,20 +77,18 @@ const RelatedLinksModule = () => {
                 <div className="space-y-4">
                     {links.map(link => (
                         <div key={link._id} className="bg-gray-800 rounded-lg p-4 block transition-colors relative">
-                            <div className="flex justify-between items-start">
-                                <a href={link.url} target="_blank" rel="noopener noreferrer" className="group flex-grow">
-                                    <p className="text-sm text-gray-400">For: {link.relatedContent?.title}</p>
-                                    <h3 className="text-lg font-bold text-orange-400 mt-1 group-hover:underline">{link.title}</h3>
-                                    <p className="text-xs text-blue-400 truncate mt-1">{link.url}</p>
-                                    {link.description && <p className="text-sm text-gray-300 mt-2 italic">"{link.description}"</p>}
-                                </a>
-                                {user && link.submittedBy && user.id === link.submittedBy._id && (
-                                    <div className="flex space-x-1 flex-shrink-0 ml-4">
-                                        <button onClick={() => setEditingLink(link)} className="p-1 hover:bg-gray-700 rounded"><Edit size={16}/></button>
-                                        <button onClick={() => handleDeleteLink(link._id)} className="p-1 hover:bg-gray-700 rounded"><Trash2 size={16}/></button>
-                                    </div>
-                                )}
-                            </div>
+                             <a href={link.url} target="_blank" rel="noopener noreferrer" className="group">
+                                <p className="text-sm text-gray-400">For: {link.relatedContent?.title}</p>
+                                <h3 className="text-lg font-bold text-orange-400 mt-1 group-hover:underline">{link.title}</h3>
+                                <p className="text-xs text-blue-400 truncate mt-1">{link.url}</p>
+                                {link.description && <p className="text-sm text-gray-300 mt-2 italic">"{link.description}"</p>}
+                            </a>
+                            {user && link.submittedBy && user.id === link.submittedBy._id && (
+                                <div className="absolute top-2 right-2 flex space-x-1">
+                                    <button onClick={() => setEditingLink(link)} className="p-1 hover:bg-gray-700 rounded"><Edit size={16}/></button>
+                                    <button onClick={() => handleDeleteLink(link._id)} className="p-1 hover:bg-gray-700 rounded"><Trash2 size={16}/></button>
+                                </div>
+                            )}
                              <div className="flex justify-between items-center mt-2 text-xs text-gray-500">
                                 <span>Type: {link.linkType}</span>
                                 <div className="flex items-center gap-4">
