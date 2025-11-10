@@ -8,7 +8,7 @@ import ReportModal from './components/ReportModal';
 import AskQuestionModal from './components/AskQuestionModal';
 import SuggestAlternativeModal from './components/SuggestAlternativeModal';
 import NotificationSystem from '../../components/Notifications/NotificationSystem';
-import { API_URL } from '../../../apiConfig';
+import { API_URL } from '../../apiConfig';
 
 const ReviewsModule = () => {
   const { user } = useAuth();
