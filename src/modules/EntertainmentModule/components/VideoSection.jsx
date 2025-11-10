@@ -5,6 +5,7 @@ import NotificationSystem from '../../../components/Notifications/NotificationSy
 import AddToCollectionModal from './AddToCollectionModal';
 import ScheduleEventModal from './ScheduleEventModal';
 import AddRelatedLinkModal from './AddRelatedLinkModal';
+import { API_URL } from '../../../apiConfig';
 
 const VideoSection = () => {
   const { user } = useAuth();
