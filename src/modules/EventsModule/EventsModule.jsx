@@ -3,7 +3,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { Calendar, Edit, Trash2, Users } from 'lucide-react';
 import EditEventModal from './components/EditEventModal';
 import NotificationSystem from '../../components/Notifications/NotificationSystem';
-import { API_URL } from '../../../apiConfig';
+import { API_URL } from '../../apiConfig';
 
 const EventsModule = () => {
     const { user } = useAuth();
@@ -15,7 +15,7 @@ const EventsModule = () => {
     const fetchEvents = async () => {
         try {
             setLoading(true);
-            const response = await fetch('${API_URL}/api/events');
+            const response = await fetch(`${API_URL}/api/events`);
             const data = await response.json();
             setEvents(data);
         } catch (error) {
