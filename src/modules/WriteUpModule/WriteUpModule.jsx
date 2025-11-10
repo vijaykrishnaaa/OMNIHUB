@@ -7,7 +7,7 @@ import SuggestEditModal from './components/SuggestEditModal';
 import RateWriteUpModal from './components/RateWriteUpModal';
 import NotificationSystem from '../../components/Notifications/NotificationSystem';
 import { Edit, Trash2, FileText, Share2, Pencil, Star } from 'lucide-react';
-import { API_URL } from '../../../apiConfig';
+import { API_URL } from '../../apiConfig'; // <-- THIS IS THE CORRECTED PATH
 
 const WriteUpModule = () => {
   const { user } = useAuth();
@@ -25,8 +25,8 @@ const WriteUpModule = () => {
     try {
       setLoading(true);
       const [writeUpsRes, statsRes] = await Promise.all([
-          fetch('${API_URL}/api/writeups'),
-          fetch('${API_URL}/api/writeups/stats')
+          fetch(`${API_URL}/api/writeups`),
+          fetch(`${API_URL}/api/writeups/stats`)
       ]);
       const writeUpsData = await writeUpsRes.json();
       const statsData = await statsRes.json();
@@ -45,7 +45,7 @@ const WriteUpModule = () => {
 
   const handleSaveWriteUp = async (formData) => {
     const isEditing = !!editingWriteUp;
-    const url = isEditing ? `${API_URL}/api/writeups/${editingWriteUp._id}` : '${API_URL}/api/writeups';
+    const url = isEditing ? `${API_URL}/api/writeups/${editingWriteUp._id}` : `${API_URL}/api/writeups`;
     const method = isEditing ? 'PUT' : 'POST';
     try {
       const response = await fetch(url, {
@@ -80,7 +80,7 @@ const WriteUpModule = () => {
 
   const handleShareSubmit = async (writeUpId, shareData) => {
     try {
-        const response = await fetch('${API_URL}/api/shares', {
+        const response = await fetch(`${API_URL}/api/shares`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...shareData, sharedBy: user.id, writeUpId })
@@ -95,10 +95,10 @@ const WriteUpModule = () => {
 
   const handleSuggestEditSubmit = async (writeUpId, suggestionText) => {
     try {
-        const response = await fetch('${API_URL}/api/edit-suggestions', {
+        const response = await fetch(`${API_URL}/api/edit-suggestions`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ suggestionText, suggestedBy: user.id, writeUpId })
+            body: JSON.stringify({ ...suggestionText, suggestedBy: user.id, writeUpId })
         });
         if (!response.ok) throw new Error('Failed to submit suggestion');
         setSuggestingEditOn(null);
@@ -110,7 +110,7 @@ const WriteUpModule = () => {
 
   const handleRatingSubmit = async (writeUpId, ratingData) => {
     try {
-        const response = await fetch('${API_URL}/api/writeup-ratings', {
+        const response = await fetch(`${API_URL}/api/writeup-ratings`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...ratingData, authorId: user.id, writeUpId })
