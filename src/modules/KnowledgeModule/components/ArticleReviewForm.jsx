@@ -21,7 +21,7 @@ const ArticleReviewForm = ({ articleId, onReviewSubmitted }) => {
         e.preventDefault();
         setIsSubmitting(true);
         try {
-            const response = await fetch('${API_URL}/api/articlereviews', {
+            const response = await fetch(`${API_URL}/api/articlereviews`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

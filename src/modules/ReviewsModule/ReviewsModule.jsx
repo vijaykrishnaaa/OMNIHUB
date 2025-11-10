@@ -25,8 +25,8 @@ const ReviewsModule = () => {
   const fetchData = async () => {
     try {
         const [reviewsRes, statsRes] = await Promise.all([
-            fetch('${API_URL}/api/reviews'),
-            fetch('${API_URL}/api/reviews/stats')
+            fetch(`${API_URL}/api/reviews`),
+            fetch(`${API_URL}/api/reviews/stats`)
         ]);
         const reviewsData = await reviewsRes.json();
         const statsData = await statsRes.json();
@@ -48,7 +48,7 @@ const ReviewsModule = () => {
 
   const handleCreateSubmit = async (e) => {
     e.preventDefault();
-    await fetch('${API_URL}/api/reviews', {
+    await fetch(`${API_URL}/api/reviews`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...newReviewData, author: user.id, authorId: user.id }),
@@ -94,7 +94,7 @@ const ReviewsModule = () => {
 
   const handleReportSubmit = async (reviewId, reportData) => {
     try {
-        const response = await fetch('${API_URL}/api/reports', {
+        const response = await fetch(`${API_URL}/api/reports`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...reportData, reportingUserId: user.id, reportedReviewId: reviewId })
@@ -109,7 +109,7 @@ const ReviewsModule = () => {
   
   const handleQuestionSubmit = async (reviewId, questionData) => {
     try {
-        const response = await fetch('${API_URL}/api/questions', {
+        const response = await fetch(`${API_URL}/api/questions`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...questionData, askerId: user.id, reviewId })
@@ -124,7 +124,7 @@ const ReviewsModule = () => {
   
   const handleAlternativeSubmit = async (reviewId, altData) => {
     try {
-        const response = await fetch('${API_URL}/api/alternatives', {
+        const response = await fetch(`${API_URL}/api/alternatives`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...altData, suggestedById: user.id, originalReviewId: reviewId })

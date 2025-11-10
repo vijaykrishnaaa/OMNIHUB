@@ -33,7 +33,7 @@ const CommentsSection = ({ reviewId, onCommentPosted }) => {
         if (!newComment.trim()) return;
 
         try {
-            await fetch('${API_URL}/api/comments', {
+            await fetch(`${API_URL}/api/comments`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

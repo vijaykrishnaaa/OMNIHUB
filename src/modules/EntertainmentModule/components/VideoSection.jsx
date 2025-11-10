@@ -22,7 +22,7 @@ const VideoSection = () => {
   const fetchVideos = async () => {
     try {
       setLoading(true);
-      const response = await fetch('${API_URL}/api/content/Video');
+      const response = await fetch(`${API_URL}/api/content/Video`);
       const data = await response.json();
       setVideos(data);
     } catch (error) { console.error("Failed to fetch videos:", error); } 
@@ -69,7 +69,7 @@ const VideoSection = () => {
   
   const handleAddToCollection = async (contentId, collectionData) => {
     try {
-        const response = await fetch('${API_URL}/api/collections/add', {
+        const response = await fetch(`${API_URL}/api/collections/add`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...collectionData, contentId })
@@ -84,7 +84,7 @@ const VideoSection = () => {
 
   const handleScheduleEvent = async (contentId, eventData) => {
     try {
-        const response = await fetch('${API_URL}/api/events', {
+        const response = await fetch(`${API_URL}/api/events`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...eventData, createdBy: user.id, relatedContent: contentId })
@@ -99,7 +99,7 @@ const VideoSection = () => {
 
   const handleAddRelatedLink = async (contentId, linkData) => {
     try {
-        const response = await fetch('${API_URL}/api/related-links', {
+        const response = await fetch(`${API_URL}/api/related-links`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...linkData, submittedBy: user.id, relatedContent: contentId })

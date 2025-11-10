@@ -13,7 +13,7 @@ const FeedbackDashboard = () => {
   const fetchFeedback = async () => {
     try {
       setLoading(true);
-      const response = await fetch('${API_URL}/api/feedback');
+      const response = await fetch(`${API_URL}/api/feedback`);
       const data = await response.json();
       setFeedbackList(data);
     } catch (error) {
