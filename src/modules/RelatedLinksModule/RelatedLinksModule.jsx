@@ -3,6 +3,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { Link as LinkIcon, Edit, Trash2, AlertTriangle } from 'lucide-react';
 import EditRelatedLinkModal from './components/EditRelatedLinkModal';
 import NotificationSystem from '../../components/Notifications/NotificationSystem';
+import { API_URL } from '../../../apiConfig';
 
 const RelatedLinksModule = () => {
     const { user } = useAuth();
