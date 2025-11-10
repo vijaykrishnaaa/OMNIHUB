@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Film, BookOpen, Play, Clock } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import { API_URL } from '../../../apiConfig';
 
 const SearchModule = ({ setActiveView }) => {
   const { user } = useAuth();
