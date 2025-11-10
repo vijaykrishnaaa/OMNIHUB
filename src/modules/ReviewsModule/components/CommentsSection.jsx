@@ -14,7 +14,7 @@ const CommentsSection = ({ reviewId, onCommentPosted }) => {
     const fetchComments = async () => {
         try {
             setIsLoading(true);
-            const response = await fetch(`http://localhost:5000/api/comments/review/${reviewId}`);
+            const response = await fetch(`${API_URL}/api/comments/review/${reviewId}`);
             const data = await response.json();
             setComments(data);
         } catch (error) {
@@ -33,7 +33,7 @@ const CommentsSection = ({ reviewId, onCommentPosted }) => {
         if (!newComment.trim()) return;
 
         try {
-            await fetch('http://localhost:5000/api/comments', {
+            await fetch('${API_URL}/api/comments', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -59,7 +59,7 @@ const CommentsSection = ({ reviewId, onCommentPosted }) => {
 
     const handleUpdateComment = async (commentId) => {
         try {
-            await fetch(`http://localhost:5000/api/comments/${commentId}`, {
+            await fetch(`${API_URL}/api/comments/${commentId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ text: editText, authorId: user.id }),
@@ -75,7 +75,7 @@ const CommentsSection = ({ reviewId, onCommentPosted }) => {
     const handleDeleteComment = async (commentId) => {
         if (window.confirm('Are you sure you want to delete this comment?')) {
             try {
-                await fetch(`http://localhost:5000/api/comments/${commentId}`, {
+                await fetch(`${API_URL}/api/comments/${commentId}`, {
                     method: 'DELETE',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ authorId: user.id }),

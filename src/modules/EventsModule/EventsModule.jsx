@@ -15,7 +15,7 @@ const EventsModule = () => {
     const fetchEvents = async () => {
         try {
             setLoading(true);
-            const response = await fetch('http://localhost:5000/api/events');
+            const response = await fetch('${API_URL}/api/events');
             const data = await response.json();
             setEvents(data);
         } catch (error) {
@@ -31,7 +31,7 @@ const EventsModule = () => {
 
     const handleUpdateEvent = async (eventId, eventData) => {
         try {
-            await fetch(`http://localhost:5000/api/events/${eventId}`, {
+            await fetch(`${API_URL}/api/events/${eventId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ...eventData, userId: user.id })
@@ -47,7 +47,7 @@ const EventsModule = () => {
     const handleDeleteEvent = async (eventId) => {
         if (window.confirm('Are you sure you want to delete this event?')) {
             try {
-                await fetch(`http://localhost:5000/api/events/${eventId}`, {
+                await fetch(`${API_URL}/api/events/${eventId}`, {
                     method: 'DELETE',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ userId: user.id })

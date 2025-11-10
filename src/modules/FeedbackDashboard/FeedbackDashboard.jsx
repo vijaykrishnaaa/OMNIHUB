@@ -13,7 +13,7 @@ const FeedbackDashboard = () => {
   const fetchFeedback = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/feedback');
+      const response = await fetch('${API_URL}/api/feedback');
       const data = await response.json();
       setFeedbackList(data);
     } catch (error) {
@@ -25,7 +25,7 @@ const FeedbackDashboard = () => {
 
   const handleUpdateStatus = async (id, newStatus) => {
     try {
-      await fetch(`http://localhost:5000/api/feedback/${id}`, {
+      await fetch(`${API_URL}/api/feedback/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),
@@ -41,7 +41,7 @@ const FeedbackDashboard = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this feedback item?')) {
       try {
-        await fetch(`http://localhost:5000/api/feedback/${id}`, { method: 'DELETE' });
+        await fetch(`${API_URL}/api/feedback/${id}`, { method: 'DELETE' });
         setFeedbackList(feedbackList.filter(item => item._id !== id));
       } catch (error) {
         console.error("Failed to delete feedback:", error);

@@ -24,7 +24,7 @@ const BookSection = () => {
     const fetchBooks = async () => {
         try {
             setLoading(true);
-            const response = await fetch('http://localhost:5000/api/content/Book');
+            const response = await fetch('${API_URL}/api/content/Book');
             const data = await response.json();
             setBooks(data);
         } catch (error) {
@@ -37,7 +37,7 @@ const BookSection = () => {
     const handleDelete = async (bookId) => {
         if (window.confirm('Are you sure you want to delete this book?')) {
             try {
-                await fetch(`http://localhost:5000/api/content/${bookId}`, { method: 'DELETE' });
+                await fetch(`${API_URL}/api/content/${bookId}`, { method: 'DELETE' });
                 fetchBooks();
                 setNotification({ type: 'success', message: 'Book deleted successfully.' });
             } catch (error) {
@@ -55,7 +55,7 @@ const BookSection = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:5000/api/content/${currentBook._id}`, {
+            const response = await fetch(`${API_URL}/api/content/${currentBook._id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -80,7 +80,7 @@ const BookSection = () => {
 
     const handleAddToCollection = async (contentId, collectionData) => {
         try {
-            const response = await fetch('http://localhost:5000/api/collections/add', {
+            const response = await fetch('${API_URL}/api/collections/add', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ...collectionData, contentId })
@@ -95,7 +95,7 @@ const BookSection = () => {
 
     const handleScheduleEvent = async (contentId, eventData) => {
         try {
-            const response = await fetch('http://localhost:5000/api/events', {
+            const response = await fetch('${API_URL}/api/events', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ...eventData, createdBy: user.id, relatedContent: contentId })
@@ -110,7 +110,7 @@ const BookSection = () => {
 
     const handleAddRelatedLink = async (contentId, linkData) => {
         try {
-            const response = await fetch('http://localhost:5000/api/related-links', {
+            const response = await fetch('${API_URL}/api/related-links', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ...linkData, submittedBy: user.id, relatedContent: contentId })

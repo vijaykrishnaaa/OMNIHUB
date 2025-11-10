@@ -20,7 +20,7 @@ const ContentModule = () => {
       cast: formData.cast ? formData.cast.split(',').map(actor => actor.trim()) : [],
     };
     try {
-      const response = await fetch('http://localhost:5000/api/content', {
+      const response = await fetch('${API_URL}/api/content', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

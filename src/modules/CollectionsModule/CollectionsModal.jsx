@@ -14,7 +14,7 @@ const CollectionsModal = ({ onClose, onNavigate }) => {
         if (!user?.id) return;
         try {
             setLoading(true);
-            const response = await fetch(`http://localhost:5000/api/collections/details/${user.id}`);
+            const response = await fetch(`${API_URL}/api/collections/details/${user.id}`);
             const data = await response.json();
             setCollections(data);
         } catch (error) {
@@ -43,20 +43,20 @@ const CollectionsModal = ({ onClose, onNavigate }) => {
 
     const handleDeleteCollection = async (collectionId) => {
         if (window.confirm('Are you sure you want to delete this entire collection?')) {
-            await fetch(`http://localhost:5000/api/collections/${collectionId}`, { method: 'DELETE' });
+            await fetch(`${API_URL}/api/collections/${collectionId}`, { method: 'DELETE' });
             fetchCollectionDetails();
         }
     };
 
     const handleRemoveItem = async (collectionId, itemId) => {
         if (window.confirm('Are you sure you want to remove this item from the collection?')) {
-            await fetch(`http://localhost:5000/api/collections/${collectionId}/item/${itemId}`, { method: 'DELETE' });
+            await fetch(`${API_URL}/api/collections/${collectionId}/item/${itemId}`, { method: 'DELETE' });
             fetchCollectionDetails();
         }
     };
 
     const handleRenameCollection = async (collectionId) => {
-        await fetch(`http://localhost:5000/api/collections/${collectionId}`, {
+        await fetch(`${API_URL}/api/collections/${collectionId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name: newName }),

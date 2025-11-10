@@ -27,7 +27,7 @@ const SearchModule = ({ setActiveView }) => {
       }
       setLoading(true);
       try {
-        const response = await fetch(`http://localhost:5000/api/search?q=${searchQuery}&filter=${activeFilter}`);
+        const response = await fetch(`${API_URL}/api/search?q=${searchQuery}&filter=${activeFilter}`);
         const data = await response.json();
         setSearchResults(data);
       } catch (error) {

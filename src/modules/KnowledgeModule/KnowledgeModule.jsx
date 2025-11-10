@@ -22,8 +22,8 @@ const KnowledgeModule = () => {
   const fetchData = async () => {
     try {
       const [articlesRes, statsRes] = await Promise.all([
-        fetch('http://localhost:5000/api/articles'),
-        fetch('http://localhost:5000/api/articles/stats')
+        fetch('${API_URL}/api/articles'),
+        fetch('${API_URL}/api/articles/stats')
       ]);
       const articlesData = await articlesRes.json();
       const statsData = await statsRes.json();
@@ -45,7 +45,7 @@ const KnowledgeModule = () => {
   const handleCreateSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/articles', {
+      const response = await fetch('${API_URL}/api/articles', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...newArticleData, tags: newArticleData.tags.split(',').map(tag => tag.trim()) }),
@@ -61,7 +61,7 @@ const KnowledgeModule = () => {
 
   const handleUpdateSubmit = async (updatedArticle) => {
     try {
-        const response = await fetch(`http://localhost:5000/api/articles/${updatedArticle._id}`, {
+        const response = await fetch(`${API_URL}/api/articles/${updatedArticle._id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updatedArticle)
@@ -77,7 +77,7 @@ const KnowledgeModule = () => {
 
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this article?')) {
-      await fetch(`http://localhost:5000/api/articles/${id}`, { method: 'DELETE' });
+      await fetch(`${API_URL}/api/articles/${id}`, { method: 'DELETE' });
       fetchData(); 
     }
   };
@@ -98,7 +98,7 @@ const KnowledgeModule = () => {
 
   const handleReportSubmit = async (articleId, reportData) => {
     try {
-        const response = await fetch('http://localhost:5000/api/articlereports', {
+        const response = await fetch('${API_URL}/api/articlereports', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...reportData, articleId, reportingUserId: user.id })

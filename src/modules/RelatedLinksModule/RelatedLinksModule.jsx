@@ -15,7 +15,7 @@ const RelatedLinksModule = () => {
     const fetchLinks = async () => {
         try {
             setLoading(true);
-            const response = await fetch('http://localhost:5000/api/related-links');
+            const response = await fetch('${API_URL}/api/related-links');
             const data = await response.json();
             setLinks(data);
         } catch (error) {
@@ -31,7 +31,7 @@ const RelatedLinksModule = () => {
 
     const handleUpdateLink = async (linkId, linkData) => {
         try {
-            await fetch(`http://localhost:5000/api/related-links/${linkId}`, {
+            await fetch(`${API_URL}/api/related-links/${linkId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ...linkData, userId: user.id })
@@ -47,7 +47,7 @@ const RelatedLinksModule = () => {
     const handleDeleteLink = async (linkId) => {
         if (window.confirm('Are you sure you want to delete this link?')) {
             try {
-                await fetch(`http://localhost:5000/api/related-links/${linkId}`, {
+                await fetch(`${API_URL}/api/related-links/${linkId}`, {
                     method: 'DELETE',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ userId: user.id })

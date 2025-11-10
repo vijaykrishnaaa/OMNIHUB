@@ -25,8 +25,8 @@ const WriteUpModule = () => {
     try {
       setLoading(true);
       const [writeUpsRes, statsRes] = await Promise.all([
-          fetch('http://localhost:5000/api/writeups'),
-          fetch('http://localhost:5000/api/writeups/stats')
+          fetch('${API_URL}/api/writeups'),
+          fetch('${API_URL}/api/writeups/stats')
       ]);
       const writeUpsData = await writeUpsRes.json();
       const statsData = await statsRes.json();
@@ -45,7 +45,7 @@ const WriteUpModule = () => {
 
   const handleSaveWriteUp = async (formData) => {
     const isEditing = !!editingWriteUp;
-    const url = isEditing ? `http://localhost:5000/api/writeups/${editingWriteUp._id}` : 'http://localhost:5000/api/writeups';
+    const url = isEditing ? `${API_URL}/api/writeups/${editingWriteUp._id}` : '${API_URL}/api/writeups';
     const method = isEditing ? 'PUT' : 'POST';
     try {
       const response = await fetch(url, {
@@ -67,7 +67,7 @@ const WriteUpModule = () => {
   const handleDeleteWriteUp = async (writeUpId) => {
     if (window.confirm('Are you sure you want to delete this write-up?')) {
       try {
-        await fetch(`http://localhost:5000/api/writeups/${writeUpId}`, { 
+        await fetch(`${API_URL}/api/writeups/${writeUpId}`, { 
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ author: user.id })
@@ -80,7 +80,7 @@ const WriteUpModule = () => {
 
   const handleShareSubmit = async (writeUpId, shareData) => {
     try {
-        const response = await fetch('http://localhost:5000/api/shares', {
+        const response = await fetch('${API_URL}/api/shares', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...shareData, sharedBy: user.id, writeUpId })
@@ -95,7 +95,7 @@ const WriteUpModule = () => {
 
   const handleSuggestEditSubmit = async (writeUpId, suggestionText) => {
     try {
-        const response = await fetch('http://localhost:5000/api/edit-suggestions', {
+        const response = await fetch('${API_URL}/api/edit-suggestions', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ suggestionText, suggestedBy: user.id, writeUpId })
@@ -110,7 +110,7 @@ const WriteUpModule = () => {
 
   const handleRatingSubmit = async (writeUpId, ratingData) => {
     try {
-        const response = await fetch('http://localhost:5000/api/writeup-ratings', {
+        const response = await fetch('${API_URL}/api/writeup-ratings', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...ratingData, authorId: user.id, writeUpId })

@@ -16,7 +16,7 @@ const AddToCollectionModal = ({ content, onClose, onSubmit }) => {
     useEffect(() => {
         const fetchCollections = async () => {
             if (user?.id) {
-                const response = await fetch(`http://localhost:5000/api/collections/user/${user.id}`);
+                const response = await fetch(`${API_URL}/api/collections/user/${user.id}`);
                 const data = await response.json();
                 setCollections(data);
             }
