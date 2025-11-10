@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Film, BookOpen, Play, Clock } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
-import { API_URL } from '../../../apiConfig';
+import { API_URL } from '../../apiConfig'; // <-- THIS IS THE CORRECTED PATH
 
 const SearchModule = ({ setActiveView }) => {
   const { user } = useAuth();
@@ -46,7 +46,7 @@ const SearchModule = ({ setActiveView }) => {
     setSearchHistory(newHistory);
     localStorage.setItem('omnihub_search_history', JSON.stringify(newHistory));
   };
-  
+ 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     addToHistory(searchQuery);
@@ -69,7 +69,7 @@ const SearchModule = ({ setActiveView }) => {
     const icons = { Movie: Film, Book: BookOpen, Video: Play };
     return icons[type] || Search;
   };
-  
+ 
   const filters = [
     { id: 'all', label: 'All' },
     { id: 'Video', label: 'Videos' },
