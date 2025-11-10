@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Lock, User, UserCheck, Eye, EyeOff } from 'lucide-react';
 import NotificationSystem from '../../../components/Notifications/NotificationSystem';
+import { API_URL } from '../../../apiConfig';
 
 const RegisterForm = ({ onSwitchToLogin, onOTPRequired }) => {
   const [formData, setFormData] = useState({
