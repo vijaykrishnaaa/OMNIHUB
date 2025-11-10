@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../../../contexts/AuthContext';
 import NotificationSystem from '../../../components/Notifications/NotificationSystem';
+import { API_URL } from '../../../apiConfig';
 
 const LoginForm = ({ onSwitchToRegister }) => {
   const [email, setEmail] = useState('');
