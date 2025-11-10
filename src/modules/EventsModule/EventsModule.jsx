@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { Calendar, Edit, Trash2, Users } from 'lucide-react';
 import EditEventModal from './components/EditEventModal';
-import NotificationSystem from '../../components/Notifications/NotificationSystem
+import NotificationSystem from '../../components/Notifications/NotificationSystem';
 import { API_URL } from '../../../apiConfig';
 
 const EventsModule = () => {
