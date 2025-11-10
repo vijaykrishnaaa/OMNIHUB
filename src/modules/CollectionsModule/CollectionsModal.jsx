@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { FolderKanban, X, Edit, Trash2, Check, XCircle } from 'lucide-react';
+import { API_URL } from '../../../apiConfig';
 
 const CollectionsModal = ({ onClose, onNavigate }) => {
     const { user } = useAuth();
