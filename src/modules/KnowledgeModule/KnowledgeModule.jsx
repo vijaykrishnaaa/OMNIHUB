@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
-import { BookOpen, Edit, Trash2, Search, ThumbsUp } from 'lucide-react';
+import { BookOpen, Edit, Trash2, ThumbsUp, Search } from 'lucide-react';
 import ArticleStatsChart from './components/ArticleStatsChart';
 import NotificationSystem from '../../components/Notifications/NotificationSystem';
 import ArticleViewModal from './components/ArticleViewModal';
 import EditArticleModal from './components/EditArticleModal';
 import ReportArticleModal from './components/ReportArticleModal';
-import { API_URL } from '../../../apiConfig';
+import { useAuth } from '../../contexts/AuthContext';
+import { API_URL } from '../../apiConfig'; // <-- THIS IS THE CORRECTED PATH
 
 const KnowledgeModule = () => {
   const { user } = useAuth();
@@ -22,8 +22,8 @@ const KnowledgeModule = () => {
   const fetchData = async () => {
     try {
       const [articlesRes, statsRes] = await Promise.all([
-        fetch('${API_URL}/api/articles'),
-        fetch('${API_URL}/api/articles/stats')
+        fetch(`${API_URL}/api/articles`),
+        fetch(`${API_URL}/api/articles/stats`)
       ]);
       const articlesData = await articlesRes.json();
       const statsData = await statsRes.json();
@@ -45,7 +45,7 @@ const KnowledgeModule = () => {
   const handleCreateSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('${API_URL}/api/articles', {
+      const response = await fetch(`${API_URL}/api/articles`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...newArticleData, tags: newArticleData.tags.split(',').map(tag => tag.trim()) }),
@@ -98,7 +98,7 @@ const KnowledgeModule = () => {
 
   const handleReportSubmit = async (articleId, reportData) => {
     try {
-        const response = await fetch('${API_URL}/api/articlereports', {
+        const response = await fetch(`${API_URL}/api/articlereports`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...reportData, articleId, reportingUserId: user.id })
