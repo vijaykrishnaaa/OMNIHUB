@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MessageSquare, Trash2 } from 'lucide-react';
+import { API_URL } from '../../../apiConfig';
 
 const FeedbackDashboard = () => {
   const [feedbackList, setFeedbackList] = useState([]);
