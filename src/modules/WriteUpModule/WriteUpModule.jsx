@@ -7,6 +7,7 @@ import SuggestEditModal from './components/SuggestEditModal';
 import RateWriteUpModal from './components/RateWriteUpModal';
 import NotificationSystem from '../../components/Notifications/NotificationSystem';
 import { Edit, Trash2, FileText, Share2, Pencil, Star } from 'lucide-react';
+import { API_URL } from '../../../apiConfig';
 
 const WriteUpModule = () => {
   const { user } = useAuth();
