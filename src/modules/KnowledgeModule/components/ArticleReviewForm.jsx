@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../../contexts/AuthContext';
+import { API_URL } from '../../../apiConfig';
 
 const ArticleReviewForm = ({ articleId, onReviewSubmitted }) => {
     const { user } = useAuth();
