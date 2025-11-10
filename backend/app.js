@@ -27,7 +27,7 @@ app.use('/api/articlereports', require('./routes/articleReports'));
 app.use('/api/questions', require('./routes/questions'));
 app.use('/api/alternatives', require('./routes/alternatives'));
 
-
+// --- THESE ARE THE MISSING ROUTES ---
 app.post('/api/auth/register', async (req, res) => {
   const { username, email, password, role } = req.body;
   try {
