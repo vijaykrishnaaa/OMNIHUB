@@ -6,6 +6,7 @@ import NotificationSystem from '../../components/Notifications/NotificationSyste
 import ArticleViewModal from './components/ArticleViewModal';
 import EditArticleModal from './components/EditArticleModal';
 import ReportArticleModal from './components/ReportArticleModal';
+import { API_URL } from '../../../apiConfig';
 
 const KnowledgeModule = () => {
   const { user } = useAuth();
